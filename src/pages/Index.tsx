@@ -133,7 +133,7 @@ const Index = () => {
       <section className="py-16 bg-card/30">
         <div className="container mx-auto px-4">
           <Tabs defaultValue="generator" className="max-w-5xl mx-auto">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
+            <TabsList className="grid w-full grid-cols-4 mb-8">
               <TabsTrigger value="generator" className="gap-2">
                 <Icon name="Wand2" size={18} />
                 Генератор
@@ -145,6 +145,10 @@ const Index = () => {
               <TabsTrigger value="ingredients" className="gap-2">
                 <Icon name="ShoppingBasket" size={18} />
                 По продуктам
+              </TabsTrigger>
+              <TabsTrigger value="scanner" className="gap-2">
+                <Icon name="ScanLine" size={18} />
+                Сканер калорий
               </TabsTrigger>
             </TabsList>
 
@@ -267,6 +271,38 @@ const Index = () => {
                   <Button className="w-full gap-2" size="lg">
                     <Icon name="ChefHat" size={20} />
                     Найти рецепты
+                  </Button>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="scanner" className="animate-fade-in">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Icon name="ScanLine" size={24} className="text-primary" />
+                    Определение калорийности по фото
+                  </CardTitle>
+                  <CardDescription>
+                    Сфотографируйте блюдо — AI мгновенно определит калории и состав
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="border-2 border-dashed border-primary/30 rounded-lg p-8 text-center hover:border-primary/60 hover:bg-accent/20 transition-all cursor-pointer" onClick={() => navigate('/calorie-scanner')}>
+                      <Icon name="Camera" size={48} className="mx-auto mb-3 text-primary" />
+                      <h4 className="font-bold mb-2">Сделать фото</h4>
+                      <p className="text-sm text-muted-foreground">Используйте камеру</p>
+                    </div>
+                    <div className="border-2 border-dashed border-primary/30 rounded-lg p-8 text-center hover:border-primary/60 hover:bg-accent/20 transition-all cursor-pointer" onClick={() => navigate('/calorie-scanner')}>
+                      <Icon name="Upload" size={48} className="mx-auto mb-3 text-primary" />
+                      <h4 className="font-bold mb-2">Загрузить фото</h4>
+                      <p className="text-sm text-muted-foreground">Выберите из галереи</p>
+                    </div>
+                  </div>
+                  <Button className="w-full gap-2" size="lg" onClick={() => navigate('/calorie-scanner')}>
+                    <Icon name="ScanLine" size={20} />
+                    Открыть сканер калорий
                   </Button>
                 </CardContent>
               </Card>

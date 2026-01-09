@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import Generator from "./pages/Generator";
 import RecipeDetail from "./pages/RecipeDetail";
 import Inspiration from "./pages/Inspiration";
+import CalorieScanner from "./pages/CalorieScanner";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/generator" element={<Generator />} />
           <Route path="/recipe/:id" element={<RecipeDetail />} />
           <Route path="/inspiration" element={<Inspiration />} />
+          <Route path="/calorie-scanner" element={<CalorieScanner />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
