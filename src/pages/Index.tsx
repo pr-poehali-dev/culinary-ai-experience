@@ -7,8 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [selectedDiet, setSelectedDiet] = useState('');
   const [cookingTime, setCookingTime] = useState('');
   const [ingredients, setIngredients] = useState('');
@@ -79,7 +81,7 @@ const Index = () => {
       <header className="border-b bg-card/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
               <div className="text-4xl">👨‍🍳</div>
               <div>
                 <h1 className="text-2xl font-bold text-primary">AI Кулинар</h1>
@@ -87,15 +89,15 @@ const Index = () => {
               </div>
             </div>
             <nav className="hidden md:flex gap-6">
-              <Button variant="ghost" className="gap-2">
+              <Button variant="ghost" className="gap-2" onClick={() => navigate('/search')}>
                 <Icon name="Search" size={18} />
                 Поиск
               </Button>
-              <Button variant="ghost" className="gap-2">
+              <Button variant="ghost" className="gap-2" onClick={() => navigate('/cookbook')}>
                 <Icon name="BookOpen" size={18} />
                 Моя книга
               </Button>
-              <Button variant="ghost" className="gap-2">
+              <Button variant="ghost" className="gap-2" onClick={() => navigate('/profile')}>
                 <Icon name="User" size={18} />
                 Профиль
               </Button>
@@ -115,11 +117,11 @@ const Index = () => {
               Генерируйте уникальные рецепты, находите блюда по ингредиентам и получайте персональные рекомендации от искусственного интеллекта
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Button size="lg" className="gap-2 text-lg px-8">
+              <Button size="lg" className="gap-2 text-lg px-8" onClick={() => navigate('/generator')}>
                 <Icon name="Sparkles" size={20} />
                 Создать рецепт
               </Button>
-              <Button size="lg" variant="outline" className="gap-2 text-lg px-8">
+              <Button size="lg" variant="outline" className="gap-2 text-lg px-8" onClick={() => navigate('/inspiration')}>
                 <Icon name="Lightbulb" size={20} />
                 Режим вдохновения
               </Button>
@@ -292,6 +294,7 @@ const Index = () => {
                 key={recipe.id} 
                 className="hover-scale cursor-pointer overflow-hidden group animate-fade-in"
                 style={{ animationDelay: `${idx * 100}ms` }}
+                onClick={() => navigate(`/recipe/${recipe.id}`)}
               >
                 <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-8xl group-hover:scale-110 transition-transform duration-300">
                   {recipe.image}
@@ -359,7 +362,10 @@ const Index = () => {
                           <span className="font-medium text-primary">{recipe.surprise}</span>
                         </div>
                       </div>
-                      <Button variant="outline" size="sm" className="gap-2">
+                      <Button variant="outline" size="sm" className="gap-2" onClick={(e) => {
+                        e.stopPropagation();
+                        navigate('/generator');
+                      }}>
                         <Icon name="ChefHat" size={16} />
                         Готовить
                       </Button>
